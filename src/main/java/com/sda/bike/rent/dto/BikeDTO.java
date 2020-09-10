@@ -1,34 +1,33 @@
-package com.sda.bike.rent.model;
+package com.sda.bike.rent.dto;
 
-import com.sda.bike.rent.model.userTypeEnum.BikeCategory;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Bike {
+public class BikeDTO extends DtoHolder {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bike_pk")
+    @JsonProperty("bike_pk")
     private Long bikePk;
 
-    @Column(name = "manufacturer")
+    @NotBlank(message = "Please provide bike manufacturer")
+    @JsonProperty("manufacturer")
     private String manufacturer;
 
-    @Column(name = "bike_model")
+    @NotBlank(message = "Please provide bike model")
+    @JsonProperty("bike_model")
     private String bikeModel;
 
-    @Column(name = "category")
-    @Enumerated(EnumType.STRING)
-    private BikeCategory category;
+    @NotBlank(message = "Please provide bike category")
+    @JsonProperty("category")
+    private String category;
 
-    @Column(name = "price")
+    @JsonProperty("price")
     private Double price;
 
-    @Column(name = "pcs_in_stock")
+    @JsonProperty("pcs_in_stock")
     private Integer pcsInStock;
 
-    @Column(name = "status")
+    @JsonProperty("status")
     private String status;
 
     public Long getBikePk() {
@@ -55,11 +54,11 @@ public class Bike {
         this.bikeModel = bikeModel;
     }
 
-    public BikeCategory getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(BikeCategory category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
