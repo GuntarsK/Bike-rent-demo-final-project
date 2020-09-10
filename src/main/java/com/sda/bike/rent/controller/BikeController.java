@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/rest/bike.svc")
@@ -39,7 +38,7 @@ public class BikeController {
                 .mapSuccess(bikeService.getBikes());
     }
 
-    @GetMapping("/user({id})")
+    @GetMapping("/bike({id})")
     public Response getBikeById(@PathVariable("id") Long id) {
         return responseMapper
                 .mapSuccess(bikeService.getBikeById(id));
@@ -54,6 +53,12 @@ public class BikeController {
     public Response search(@RequestBody BikeDTO bikeDTO) {
         return responseMapper
                 .mapSuccess(bikeService.search(bikeDTO));
+    }
+
+    @DeleteMapping("/bike({id})")
+    public Response deleteBike(@PathVariable("id") Long id) {
+        return responseMapper
+                .mapSuccess(bikeService.deleteBike(id));
     }
 
 }
